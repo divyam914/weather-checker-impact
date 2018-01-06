@@ -5,13 +5,18 @@ class ZipForm extends React.Component{
     super();
     this.state =
       {
-          zipcode: 0
+          zip: 0
       }
-      this.updateZip = this.updateZip.bind(this);
+
+      this.handleClick = this.handleClick.bind(this);
   }
 
-  updateZip(zipCode){
-      this.setState({zip:zipCode});
+
+
+  handleClick(e) {
+    e.preventDefault();
+    this.props.updateZip(e.target.previousSibling.value);
+    console.log(e.target.previousSibling.value);
   }
 
   render() {
@@ -19,7 +24,9 @@ class ZipForm extends React.Component{
       return (
         <div id="zip-form">
         <input placeholder='Enter your Zip Code' />
-        <button>Go</button>
+        <button onClick= {this.handleClick}>
+          Go
+        </button>
       </div>
     )
   }
